@@ -2,7 +2,7 @@
 while not game:IsLoaded() or not game:GetService("CoreGui") or not game:GetService("Players").LocalPlayer or not game:GetService("Players").LocalPlayer.PlayerGui do wait() end
 -- Constraints: -----------------------|
 local ver = "0"
-local cordCode = "https://discord.gg/r8gEZgh"
+local cordCode = "cry about it"
 ---------------------------------------|
 
 Parents = {[1] = game:GetService("CoreGui"):FindFirstChild("RobloxGui"), [2] = game:GetService("CoreGui"), [3] = game:GetService("Players").LocalPlayer.PlayerGui}
@@ -338,11 +338,10 @@ local cmdp = game:GetService("Players")
 local cmdlp = cmdp.LocalPlayer
 if isfile then
 	if not isfile("CMD-X.lua") then
-		Stand("Looks like you're new here!","To view commands, use .commands","You can use different stuff like .hotkeys","","Join the discord if you need any help using the script, false tickets will result in a ban.","Okay",true)
+		Stand("Looks like you're new here!","To view commands, use .commands","You can use different stuff like .hotkeys","","stop being sus.","Okay",true)
 		repeat wait() until RunDude == true
 	end
 end
---repeat wait() until RunDude == true
 
 -- Variables: ------------------------|
 local player = cmdlp
@@ -353,11 +352,11 @@ local cmdts = game:GetService("TweenService")
 local cmdvu = game:GetService("VirtualUser")
 local cmduis = game:GetService("UserInputService")
 local Mouses = cmdlp:GetMouse()
-cmdm = Mouses
+local cmdm = Mouses
 -- we dont have this many owners just alts
 local Devs = {}
 
-DevCords = {
+local DevCords = {
 	"alx#6729";
 	"Curvn#2002";
 }
@@ -17066,8 +17065,9 @@ end)
 
 local counter = 0
 local num = 10
-if not _G.colorSequences then
-	_G.colorSequences = {}
+local _colorSequences = {}
+
+spawn(function()
 	while true do
 		local sequence = {}
 		for i = 0, num do
@@ -17080,40 +17080,38 @@ if not _G.colorSequences then
 			)
 		end
 		local new = ColorSequence.new(sequence)
-		if #_G.colorSequences > 0 then
-			if new == _G.colorSequences[1] then
+		if #_colorSequences > 0 then
+			if new == _colorSequences[1] then
 				break
 			end
 		end
-		table.insert(_G.colorSequences, new)
+		table.insert(_colorSequences, new)
 		counter = counter + 0.0785
 		if (counter >= 6.28) then
 			counter = 0
 		end
 	end
-end
+end)
 
-if not _G.RGBDev then
-	_G.RGBDev = {Lettering = {}, Connections = {}}
-end
+local _RGBDev = {Lettering = {}, Connections = {}}
 
-function RGBDev(Player)
+local RGBDev = function(Player)
 	name = Player.Name
-	if _G.RGBDev.Connections[name] then return end
+	if _RGBDev.Connections[name] then return end
 	local plm = game:GetService("CoreGui").PlayerList:FindFirstChild("PlayerListMaster")
 	if not plm or not plm:FindFirstChild("OffsetUndoFrame", true) then
 		return
 	else
 		plm = plm:FindFirstChild("OffsetUndoFrame", true)
 	end
-	_G.RGBDev.Connections[name] = game:GetService("RunService").RenderStepped:Connect(function()
+	_RGBDev.Connections[name] = game:GetService("RunService").RenderStepped:Connect(function()
 		for _,v in pairs(plm:GetDescendants()) do
-			if v:IsA("TextLabel") and v.Name == "PlayerName" and v.Parent.Parent.Parent.Parent.Parent.Parent.Name == "p_"..Player.UserId then
-				if not _G.RGBDev.Lettering[v] then
-					_G.RGBDev.Lettering[v] = Instance.new("UIGradient", v)
+			if v:IsA("TextLabel") and v.Name == "PlayerName" and v.Parent.Parent.Parent.Parent.Parent.Parent.Name == "p_" .. Player.UserId then
+				if not _RGBDev.Lettering[v] then
+					_RGBDev.Lettering[v] = Instance.new("UIGradient", v)
 					v.TextColor3 = Color3.fromRGB(255, 255, 255)
 				elseif math.ceil(tick()) % 0.5 == 0 then
-					_G.RGBDev.Lettering[v].Color = _G.colorSequences[math.ceil((math.fmod(tick(), 1))*80)]
+					_RGBDev.Lettering[v].Color = _colorSequences[math.ceil((math.fmod(tick(), 1))*80)]
 				end
 				v.Rotation = math.random(-1,1)
 				if Devs[name] then
@@ -17124,7 +17122,7 @@ function RGBDev(Player)
 	end)
 end
 
-function colorName(Player)
+local colorName = function(Player)
 	name = Player.Name
 	local plm = game:GetService("CoreGui").RobloxGui:FindFirstChild("PlayerListMaster")
 	if not plm then
@@ -17132,7 +17130,7 @@ function colorName(Player)
 	end
 	plm = plm:FindFirstChild("OffsetUndoFrame", true)
 	for i,v in pairs(plm:GetDescendants()) do
-		if v:IsA("TextLabel") and v.Name == "PlayerName" and v.Parent.Parent.Parent.Parent.Parent.Parent.Name == "p_"..Player.UserId then
+		if v:IsA("TextLabel") and v.Name == "PlayerName" and v.Parent.Parent.Parent.Parent.Parent.Parent.Name == "p_" .. Player.UserId then
 			if Donors[name] then
 				if Tier[Donors[name]].Color == "RGBDev" then
 					RGBDev(name)
@@ -17148,4 +17146,3 @@ end
 output.Visible = true
 holder.Visible = true
 holder.Active = true
-RGBDev(cmdlp)
